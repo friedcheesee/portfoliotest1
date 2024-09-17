@@ -1,0 +1,81 @@
+/* src/App.css */
+/* src/App.css */
+.desktop {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: url('./test2.jpg') no-repeat center center;
+  background-size: cover; /* Ensures the wallpaper covers the desktop */
+}
+
+.icons {
+  position: absolute;
+  top: 50px; /* Distance from the top of the desktop area */
+  left: 10px; /* Distance from the left side of the desktop area */
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Space between icons */
+}
+/* src/App.css */
+.icon a {
+  text-decoration: none; /* Remove underline */
+  color: black; /* Set text color to black */
+}
+
+.icon a:hover {
+  color: black; /* Ensure color stays black on hover */
+}
+
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.icon img {
+  width: 48px; /* Adjust size as needed */
+  height: 48px;
+}
+
+
+/* src/App.css */
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%; /* Ensures the taskbar spans the full width */
+  height: 45px; /* Adjust height if needed */
+  background: rgba(0, 0, 0, 0.5); /* Black background with 50% opacity */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px; /* Increase padding to avoid clipping */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3); /* Optional: Adds a subtle shadow */
+  box-sizing: border-box; /* Includes padding in the element's total width and height */
+}
+
+.clock {
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  color: white; /* Adjust color as needed */
+  white-space: nowrap; /* Prevents text from wrapping */
+}
+
+.start-button {
+  font-size: 14px;
+}
+
+.project-list {
+  position: absolute;
+  top: 50px; /* Adjust if needed */
+  left: 10px; /* Adjust if needed */
+  color: white;
+}
+
+.start-button img {
+  width: 40px; /* Set width to desired size */
+  height: auto; /* Maintain aspect ratio */
+  vertical-align: middle; /* Align image vertically with text */
+  margin-right: 5px; /* Add space between image and text */
+}

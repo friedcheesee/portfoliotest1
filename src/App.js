@@ -8,14 +8,16 @@ import linkedinImage from './images/linkedin.png';
 import mailImage from './images/mail.png';
 import Clock from './Clock';
 import StartingVideo from './StartingVideo'; // Import the StartingVideo component
-import Modal from './Modal'; // Import the Modal component
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [projects, setProjects] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
   const [showDesktop, setShowDesktop] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null); // Track the selected project
 
   const handleVideoEnd = () => {
     setShowDesktop(true);
@@ -42,11 +44,16 @@ function App() {
   };
 
   const handleProjectIconClick = () => {
-    setIsModalOpen(true);
+    setIsStartMenuOpen(!isStartMenuOpen);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const handleProjectClick = (project) => {
+    setSelectedProject(project); // Set the selected project
+  };
+
+  const handleCloseStartMenu = () => {
+    setIsStartMenuOpen(false);
+    setSelectedProject(null); // Clear the selected project when closing the menu
   };
 
   return (
@@ -60,20 +67,58 @@ function App() {
               <img src="/start.png" alt="Windows Logo" />
             </div>
             <div className="music-controls">
-              <button onClick={togglePlayPause}>
-                {isPlaying ? 'Pause' : 'Play'}
-              </button>
+              <FontAwesomeIcon
+                icon={isPlaying ? faPause : faPlay}
+                onClick={togglePlayPause}
+                size="lg"
+                className="play-pause-icon"
+              />
             </div>
             <Clock />
           </div>
-          
+
+          {isStartMenuOpen && (
+            <div className="start-menu">
+              <div className="menu-left">
+                <ul className="project-list">
+                  {projects.map(project => (
+                    <li
+                      key={project._id}
+                      onClick={() => handleProjectClick(project)} // Set selected project on click
+                      className="project-name"
+                    >
+                      {project.name}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="menu-right">
+                {selectedProject ? (
+                  <>
+                    <h3>{selectedProject.name}</h3>
+                    <p>{selectedProject.description}</p>
+                    <ul>
+                      {selectedProject.technologies?.map((tech, index) => (
+                        <li key={index}>{tech}</li>
+                      ))}
+                    </ul>
+                    <button onClick={handleCloseStartMenu}>Close</button> {/* Button to close the start menu */}
+                  </>
+                ) : (
+                  <p>Hover over or click an item to preview</p>
+                )}
+              </div>
+            </div>
+          )}
+
           <div className="icons">
             <div className="icon" onClick={handleProjectIconClick}>
               <img src={folderImage} alt="Folder" />
               <span>My Projects</span>
             </div>
             <div className="icon">
-              <img src={recycleBinImage} alt="Recycle Bin" onClick={handleProjectIconClick} />
+              <img src={recycleBinImage} alt="Recycle Bin" />
               <span>Recycle Bin</span>
             </div>
             <div className="icon">
@@ -96,20 +141,9 @@ function App() {
             </div>
           </div>
 
-          <div className="project-list">
-            {projects.map((project, index) => (
-              <div key={index} className="project">
-                <h3>{project.name}</h3>
-                <p>{project.description}</p>
-              </div>
-            ))}
-          </div>
-
-          <audio ref={audioRef} src="/images/Kalimba.mp3" autoPlay />
+          <audio ref={audioRef} src="/images/Kalimba.mp3" />
         </div>
       )}
-
-      <Modal isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
 }

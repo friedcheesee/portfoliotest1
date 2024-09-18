@@ -1,5 +1,4 @@
 /* src/App.css */
-/* src/App.css */
 .desktop {
   position: relative;
   width: 100vw;
@@ -16,15 +15,7 @@
   flex-direction: column;
   gap: 25px; /* Space between icons */
 }
-/* src/App.css */
-.icon a {
-  text-decoration: none; /* Remove underline */
-  color: black; /* Set text color to black */
-}
 
-.icon a:hover {
-  color: black; /* Ensure color stays black on hover */
-}
 
 .icon {
   display: flex;
@@ -38,44 +29,161 @@
   height: 48px;
 }
 
-
-/* src/App.css */
 .taskbar {
   position: fixed;
   bottom: 0;
-  width: 100%; /* Ensures the taskbar spans the full width */
-  height: 45px; /* Adjust height if needed */
-  background: rgba(0, 0, 0, 0.5); /* Black background with 50% opacity */
+  width: 100%;
+  height: 48px;
+  background: rgba(0, 0, 0, 0.5);
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px; /* Increase padding to avoid clipping */
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3); /* Optional: Adds a subtle shadow */
-  box-sizing: border-box; /* Includes padding in the element's total width and height */
+  padding: 0 20px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+@keyframes flyIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
-.clock {
-  font-family: 'Arial', sans-serif;
-  font-size: 16px;
-  color: white; /* Adjust color as needed */
-  white-space: nowrap; /* Prevents text from wrapping */
+.start-menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 50vw; /* Adjust width as needed */
+  height: 50vh; /* Adjust height as needed */
+  background-color: #333; /* Background color of the menu */
+  color: white;
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional: adds a shadow for better visibility */
+  animation: flyIn 0.5s ease-out; /* Apply the fly-in animation */
 }
 
-.start-button {
-  font-size: 14px;
+/* Optional: Style the left and right parts */
+.menu-left {
+  flex: 1;
+  padding: 10px;
+  border-right: 1px solid #555;
+  overflow-y: auto; /* Allows scrolling if list is too long */
+}
+
+.menu-right {
+  flex: 2;
+  padding: 10px;
 }
 
 .project-list {
-  position: absolute;
-  top: 50px; /* Adjust if needed */
-  left: 10px; /* Adjust if needed */
-  color: white;
+  list-style: none;
+  padding: 0;
 }
 
+.project-name {
+  cursor: pointer;
+  padding: 5px;
+  border-bottom: 1px solid #555;
+}
+
+.project-name:hover {
+  background-color: #444;
+}
+
+.menu-right button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #555;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.menu-right button:hover {
+  background-color: #666;
+}
+
+
 .start-button img {
-  width: 40px; /* Set width to desired size */
-  height: auto; /* Maintain aspect ratio */
-  vertical-align: middle; /* Align image vertically with text */
-  margin-right: 5px; /* Add space between image and text */
+  width: 48px; /* Adjust size of the image */
+  height: auto;
+}
+
+.start-menu {
+  animation: flyIn 0.5s ease-out;
+  position: fixed; /* Change to fixed to stay above taskbar */
+  bottom: 45px; /* Position it just above the taskbar */
+  left: 10px; /* Keep aligned with icons */
+  width: 50vw;
+  height: 50vh;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  display: flex;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  z-index: 1000; /* Ensure it is on top of other elements */
+}
+
+.start-menu-left {
+  width: 40%;
+  padding: 10px;
+  border-right: 2px solid white;
+  overflow-y: auto;
+}
+
+.start-menu-right {
+  width: 60%;
+  padding: 10px;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-details {
+  text-align: center;
+}
+
+.project-details p {
+  margin: 10px 0;
+}
+
+
+.project-list {
+  list-style: none;
+  padding: 0;
+}
+
+.project-name {
+  cursor: pointer;
+  padding: 5px 0;
+}
+
+.project-name:hover {
+  background: rgba(255, 255, 255, 0.2); /* Highlight effect */
+}
+
+.project-details {
+  font-size: 14px;
+}
+
+.project-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.project-details li {
+  margin: 5px 0;
+}
+
+.music-controls {
+  position: fixed;
+  bottom: 55px; /* Adjust if needed */
+  left: 10px; /* Adjust if needed */
 }

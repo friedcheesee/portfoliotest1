@@ -24,7 +24,7 @@ function App() {
   };
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/projects')
+    axios.get('https://portfoliobackend-1-rb9h.onrender.com/api/projects')
       .then(response => setProjects(response.data))
       .catch(error => console.error(error));
   }, []);

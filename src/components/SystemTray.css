@@ -1,0 +1,32 @@
+.system-tray {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 100%;
+}
+
+.tray-icons {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  padding: 4px 4px;
+  border-radius: 3px;
+}
+
+.tray-icons:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.tray-icon {
+  padding: 3px 3px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.9);
+  cursor: default;
+  border-radius: 2px;
+  text-align: center;
+  min-width: 16px;
+}
+
+.tray-icon:hover {
+  background: rgba(255,255,255,0.12);
+}

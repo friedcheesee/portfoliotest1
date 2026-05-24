@@ -1,189 +1,97 @@
-/* src/App.css */
+:root {
+  --taskbar-height: 40px;
+  --aero-glass-bg: linear-gradient(to bottom, rgba(180,200,220,0.6) 0%, rgba(100,140,180,0.5) 45%, rgba(60,100,140,0.6) 50%, rgba(40,80,120,0.7) 100%);
+  --aero-glass-blur: blur(12px);
+  --aero-border-light: rgba(255,255,255,0.3);
+  --aero-border-dark: rgba(80,120,160,0.6);
+  --aero-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  --win7-blue: #245EDC;
+  --win7-blue-light: #4A90D9;
+  --win7-blue-hover: #3399FF;
+  --win7-dark: #1E3A5F;
+  --win7-titlebar-height: 30px;
+  --win7-font: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  --win7-font-size: 12px;
+  --win7-startmenu-width: 480px;
+  --win7-startmenu-height: 520px;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* Desktop */
 .desktop {
   position: relative;
   width: 100vw;
   height: 100vh;
-  background: url('./test2.jpg') no-repeat center center;
-  background-size: cover; /* Ensures the wallpaper covers the desktop */
+  overflow: hidden;
+  font-family: var(--win7-font);
+  font-size: var(--win7-font-size);
+  user-select: none;
 }
 
+/* Desktop Icons */
 .icons {
   position: absolute;
-  top: 50px; /* Distance from the top of the desktop area */
-  left: 10px; /* Distance from the left side of the desktop area */
+  top: 12px;
+  left: 12px;
   display: flex;
   flex-direction: column;
-  gap: 25px; /* Space between icons */
+  gap: 8px;
+  z-index: 5;
 }
-
 
 .icon {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  width: 76px;
+  padding: 4px;
+  border-radius: 3px;
+  cursor: default;
+}
+
+.icon:hover {
+  background: rgba(100,150,255,0.25);
+  border: 1px solid rgba(100,150,255,0.4);
+  padding: 3px;
+}
+
+.icon:active {
+  background: rgba(100,150,255,0.4);
+}
+
+.icon.selected {
+  background: rgba(100,150,255,0.45);
+  border: 1px solid rgba(100,150,255,0.7);
+  padding: 3px;
 }
 
 .icon img {
-  width: 48px; /* Adjust size as needed */
+  width: 48px;
   height: 48px;
+  margin-bottom: 2px;
+  pointer-events: none;
 }
 
-.taskbar {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 48px;
-  background: rgba(0, 0, 0, 0.5);
+.icon span {
   color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
-  box-sizing: border-box;
-}
-@keyframes flyIn {
-  from {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.start-menu {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 50vw; /* Adjust width as needed */
-  height: 50vh; /* Adjust height as needed */
-  background-color: #333; /* Background color of the menu */
-  color: white;
-  display: flex;
-  flex-direction: row;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional: adds a shadow for better visibility */
-  animation: flyIn 0.5s ease-out; /* Apply the fly-in animation */
-}
-
-/* Optional: Style the left and right parts */
-.menu-left {
-  flex: 1;
-  padding: 10px;
-  border-right: 1px solid #555;
-  overflow-y: auto; /* Allows scrolling if list is too long */
-}
-
-.menu-right {
-  flex: 2;
-  padding: 10px;
-}
-
-.project-list {
-  list-style: none;
-  padding: 0;
-}
-
-.project-name {
-  cursor: pointer;
-  padding: 5px;
-  border-bottom: 1px solid #555;
-}
-
-.project-name:hover {
-  background-color: #444;
-}
-
-.menu-right button {
-  margin-top: 10px;
-  padding: 5px 10px;
-  background-color: #555;
-  border: none;
-  color: white;
-  cursor: pointer;
-}
-
-.menu-right button:hover {
-  background-color: #666;
-}
-
-
-.start-button img {
-  width: 48px; /* Adjust size of the image */
-  height: auto;
-}
-
-.start-menu {
-  animation: flyIn 0.5s ease-out;
-  position: fixed; /* Change to fixed to stay above taskbar */
-  bottom: 45px; /* Position it just above the taskbar */
-  left: 10px; /* Keep aligned with icons */
-  width: 50vw;
-  height: 50vh;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  display: flex;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  z-index: 1000; /* Ensure it is on top of other elements */
-}
-
-.start-menu-left {
-  width: 40%;
-  padding: 10px;
-  border-right: 2px solid white;
-  overflow-y: auto;
-}
-
-.start-menu-right {
-  width: 60%;
-  padding: 10px;
-  overflow-y: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.project-details {
-  text-align: center;
-}
-
-.project-details p {
-  margin: 10px 0;
-}
-
-
-.project-list {
-  list-style: none;
-  padding: 0;
-}
-
-.project-name {
-  cursor: pointer;
-  padding: 5px 0;
-}
-
-.project-name:hover {
-  background: rgba(255, 255, 255, 0.2); /* Highlight effect */
-}
-
-.project-details {
-  font-size: 14px;
-}
-
-.project-details ul {
-  list-style: none;
-  padding: 0;
-}
-
-.project-details li {
-  margin: 5px 0;
-}
-
-.music-controls {
-  position: fixed;
-  bottom: 55px; /* Adjust if needed */
-  left: 10px; /* Adjust if needed */
+  font-size: 11px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.9), 0 0 2px rgba(0,0,0,0.7);
+  line-height: 1.2;
+  word-wrap: break-word;
+  pointer-events: none;
 }
